@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'package:google_fonts/google_fonts.dart';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
@@ -28,7 +29,9 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 class ProductDetailScreen extends StatefulWidget {
   final Product product;
+
   ProductDetailScreen(this.product);
+
   @override
   State<StatefulWidget> createState() {
     return _ProductDetailScreenState();
@@ -767,14 +770,14 @@ class _ProductDetailScreenState extends State<ProductDetailScreen>
                     children: <Widget>[
                       Padding(
                         padding: const EdgeInsets.only(left: 10.0),
-                        child: Text(
-                          'By ${selectedProduct.name.split(' ')[0]}',
-                          style: TextStyle(
-                              fontSize: 17,
-                              fontWeight: FontWeight.normal,
-                              color: Colors.green,
-                              fontFamily: fontFamily),
-                        ),
+                        child: Text('By ${selectedProduct.name.split(' ')[0]}',
+                            style: GoogleFonts.robotoCondensed(
+                              textStyle: TextStyle(
+                                fontSize: 17,
+                                fontWeight: FontWeight.normal,
+                                color: Colors.green,
+                              ),
+                            )),
                       ),
                       Row(
                         children: <Widget>[
@@ -793,11 +796,12 @@ class _ProductDetailScreenState extends State<ProductDetailScreen>
                 padding: EdgeInsets.all(10),
                 child: Text(
                   selectedProduct.name,
-                  style: TextStyle(
-                      fontSize: 17,
-                      letterSpacing: 0.5,
-                      fontWeight: FontWeight.bold,
-                      fontFamily: fontFamily),
+                  style: GoogleFonts.robotoCondensed(
+                      textStyle: TextStyle(
+                    fontSize: 17,
+                    letterSpacing: 0.5,
+                    fontWeight: FontWeight.bold,
+                  )),
                   textAlign: TextAlign.start,
                 ),
               ),
@@ -809,13 +813,12 @@ class _ProductDetailScreenState extends State<ProductDetailScreen>
                   ? Container(
                       alignment: Alignment.centerLeft,
                       padding: EdgeInsets.all(10),
-                      child: Text(
-                        'Size ',
-                        style: TextStyle(
-                          fontSize: 14,
-                          fontFamily: fontFamily,
-                        ),
-                      ),
+                      child: Text('Size ',
+                          style: GoogleFonts.robotoCondensed(
+                            textStyle: TextStyle(
+                              fontSize: 14,
+                            ),
+                          )),
                     )
                   : Container(),
               widget.product.hasVariants &&
@@ -831,7 +834,8 @@ class _ProductDetailScreenState extends State<ProductDetailScreen>
                       padding: EdgeInsets.all(10),
                       child: Text(
                         'Quantity ',
-                        style: TextStyle(fontSize: 14, fontFamily: fontFamily),
+                        style: GoogleFonts.robotoCondensed(
+                            textStyle: TextStyle(fontSize: 14)),
                       ),
                     )
                   : Container(),
@@ -1131,13 +1135,12 @@ class _ProductDetailScreenState extends State<ProductDetailScreen>
         Container(
           alignment: Alignment.centerLeft,
           padding: EdgeInsets.all(10),
-          child: Text(
-            key,
-            style: TextStyle(
-              fontSize: 17,
-              fontFamily: fontFamily,
-            ),
-          ),
+          child: Text(key,
+              style: GoogleFonts.robotoCondensed(
+                textStyle: TextStyle(
+                  fontSize: 17,
+                ),
+              )),
         ),
         Container(
           alignment: Alignment.centerLeft,
@@ -1152,12 +1155,13 @@ class _ProductDetailScreenState extends State<ProductDetailScreen>
                             decoration: TextDecoration.lineThrough)),
                     TextSpan(text: '   '),
                     TextSpan(
-                        text: value,
-                        style: TextStyle(
-                            fontSize: 18,
-                            color: Colors.red,
-                            fontFamily: fontFamily,
-                            fontWeight: FontWeight.bold)),
+                      text: value,
+                      style: GoogleFonts.robotoCondensed(
+                          textStyle: TextStyle(
+                              fontSize: 18,
+                              color: Colors.red,
+                              fontWeight: FontWeight.bold)),
+                    )
                   ]),
                 )
               : discount
@@ -1170,21 +1174,21 @@ class _ProductDetailScreenState extends State<ProductDetailScreen>
                             )),
                         TextSpan(
                             text: value,
-                            style: TextStyle(
-                                fontSize: 18,
-                                color: Colors.red,
-                                fontFamily: fontFamily,
-                                fontWeight: FontWeight.bold)),
+                            style: GoogleFonts.robotoCondensed(
+                                textStyle: TextStyle(
+                                    fontSize: 18,
+                                    color: Colors.red,
+                                    fontWeight: FontWeight.bold))),
                       ]),
                     )
                   : Text(
                       value,
-                      style: TextStyle(
+                      style: GoogleFonts.robotoCondensed(
+                          textStyle: TextStyle(
                         fontSize: 18,
                         color: Colors.red,
                         fontWeight: FontWeight.bold,
-                        fontFamily: fontFamily,
-                      ),
+                      )),
                     ),
         ),
       ],

@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:http/http.dart' as http;
 import 'package:ofypets_mobile_app/models/category.dart';
 import 'package:ofypets_mobile_app/models/option_type.dart';
@@ -124,10 +125,11 @@ class _HomeScreenState extends State<HomeScreen> {
                           width: 8.0,
                         ),
                         Text('Shop by Category',
-                            style: TextStyle(
-                                fontSize: 14,
-                                fontWeight: FontWeight.normal,
-                                fontFamily: fontFamily)),
+                            style: GoogleFonts.robotoCondensed(
+                                textStyle: TextStyle(
+                              fontSize: 14,
+                              fontWeight: FontWeight.normal,
+                            ))),
                       ],
                     ),
                   ),
@@ -194,10 +196,11 @@ class _HomeScreenState extends State<HomeScreen> {
                             width: 8.0,
                           ),
                           Text('Today\'s Deals',
-                              style: TextStyle(
-                                  fontSize: 14,
-                                  fontWeight: FontWeight.normal,
-                                  fontFamily: fontFamily)),
+                              style: GoogleFonts.robotoCondensed(
+                                  textStyle: TextStyle(
+                                fontSize: 14,
+                                fontWeight: FontWeight.normal,
+                              ))),
                         ],
                       ),
                     ))
@@ -480,7 +483,7 @@ class _HomeScreenState extends State<HomeScreen> {
             'api/v1/taxonomies?q[name_cont]=Landing_Banner&set=nested')
         .then((response) {
       responseBody = json.decode(response.body);
-      responseBody['taxonomies'][0]['root']['taxons'].forEach((banner) {
+      responseBody['taxonomies'][0]['root']['taxons']?.forEach((banner) {
         setState(() {
           banners.add(BannerImage(
               imageSlug: banner['meta_title'], imageUrl: banner['icon']));

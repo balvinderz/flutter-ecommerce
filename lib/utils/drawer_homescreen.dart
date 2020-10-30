@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:http/http.dart' as http;
 import 'package:ofypets_mobile_app/scoped-models/main.dart';
 import 'package:ofypets_mobile_app/screens/account.dart';
@@ -9,6 +10,7 @@ import 'package:ofypets_mobile_app/screens/favorites.dart';
 import 'package:ofypets_mobile_app/screens/order_history.dart';
 import 'package:ofypets_mobile_app/screens/retun_policy.dart';
 import 'package:ofypets_mobile_app/utils/constants.dart';
+import 'package:package_info/package_info.dart';
 import 'package:scoped_model/scoped_model.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -24,10 +26,14 @@ class HomeDrawer extends StatefulWidget {
 
 class _HomeDrawer extends State<HomeDrawer> {
   int favCount = 0;
+  PackageInfo packageInfo ;
+
   @override
   void initState() {
     super.initState();
     getFavoritesCount();
+    getAppVersion();
+
   }
 
   getFavoritesCount() async {
@@ -41,7 +47,7 @@ class _HomeDrawer extends State<HomeDrawer> {
             headers: headers)
         .then((response) {
       responseBody = json.decode(response.body);
-      responseBody['data'].forEach((favoriteObj) {
+      responseBody['data']?.forEach((favoriteObj) {
         setState(() {
           favCount++;
         });
@@ -317,7 +323,7 @@ class _HomeDrawer extends State<HomeDrawer> {
                     fontFamily: 'HolyFat', fontSize: 65, color: Colors.white),
               ),
               Text(
-                '1.0.0',
+                packageInfo == null ? '' : packageInfo.version,
                 style:
                     TextStyle(color: Colors.white, fontWeight: FontWeight.w300),
               ),
@@ -393,6 +399,15 @@ class _HomeDrawer extends State<HomeDrawer> {
         ],
       ),
     );
+  }
+
+  Future<void> getAppVersion() async {
+    packageInfo = await PackageInfo.fromPlatform();
+
+    setState(() {
+
+    });
+
   }
 }
 
